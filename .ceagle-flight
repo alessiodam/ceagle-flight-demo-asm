@@ -1,0 +1,16 @@
+[program]
+name = "CEagle Flight Demo (ASM)"
+version = "1.0.0"
+summary = "Program to test ASM cloud builds"
+description = """
+A demo program for CEagle Flight demonstrating ASM cloud builds
+"""
+categories = ["other"]
+tags = ["demo"]
+author = "alessiodam"
+
+[build]
+command = "make"
+output = "bin/HELLO.8xp"
+submodules = false
+timeout = "5m"
