@@ -11,6 +11,6 @@ author = "alessiodam"
 
 [build]
 command = "make"
-output = "bin/HELLO.8xp"
+output = "bin/CEFLDEMO.8xp"
 submodules = false
 timeout = "5m"
