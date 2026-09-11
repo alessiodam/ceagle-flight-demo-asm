@@ -1,3 +1,4 @@
+#include <demolib.h>
 #include <graphx.h>
 #include <keypadc.h>
 #include <tice.h>
@@ -18,8 +19,31 @@ static void centre(const char *text, int y)
     gfx_PrintStringXY(text, (GFX_LCD_WIDTH - (int)gfx_GetStringWidth(text)) / 2, y);
 }
 
+/* Everything below runs through LibLoad, in the library this program depends
+ * on. Flight fetched its stub and its header from Roost before the build
+ * started; the library itself was never rebuilt here. */
+static void digits(char *out, uint24_t value)
+{
+    uint24_t length = 0;
+
+    do
+    {
+        out[length++] = (char)('0' + value % 10);
+        value /= 10;
+    } while (value != 0);
+
+    out[length] = '\0';
+
+    /* Written least significant digit first, so put it the right way round. */
+    demolib_reverse(out);
+}
+
 int main(void)
 {
+    char answer[8];
+
+    digits(answer, demolib_gcd(84, 36));
+
     gfx_Begin();
     gfx_SetDrawBuffer();
     palette();
@@ -32,6 +56,11 @@ int main(void)
     gfx_SetTextFGColor(FOREGROUND);
     gfx_SetTextScale(1, 1);
     centre("built on CEagle Aerie with Flight", 120);
+    gfx_SetTextFGColor(ACCENT);
+    gfx_PrintStringXY("gcd(84, 36) = ", 96, 142);
+    gfx_PrintString(answer);
+    gfx_SetTextFGColor(FOREGROUND);
+    centre("answered by DEMOLIB, fetched not rebuilt", 160);
     gfx_SetColor(ACCENT);
     gfx_HorizLine(60, 108, GFX_LCD_WIDTH - 120);
     gfx_SwapDraw();

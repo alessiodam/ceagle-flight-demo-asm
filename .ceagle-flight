@@ -1,13 +1,17 @@
 [program]
 name = "CEagle Flight Demo (ASM)"
-version = "1.0.1"
+version = "1.1.0"
 summary = "Program to test ASM cloud builds"
 description = """
-A demo program for CEagle Flight demonstrating ASM cloud builds
+A demo program for CEagle Flight demonstrating ASM cloud builds, and a
+build that depends on a LibLoad library published on Roost.
 """
 categories = ["other"]
 tags = ["demo"]
 author = "alessiodam"
+# The LibLoad library this program links against and that Swoop installs
+# alongside it. Flight fetches the published archive; nothing is rebuilt.
+depends = ["ceagle-flight-demo-libload"]
 
 [build]
 command = "make"
