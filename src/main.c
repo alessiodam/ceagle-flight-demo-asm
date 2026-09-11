@@ -28,10 +28,10 @@ int main(void)
     gfx_SetTextBGColor(3);
     gfx_SetTextFGColor(ACCENT);
     gfx_SetTextScale(3, 3);
-    centre("Hello, Flight!", 80);
+    centre("Flight Demo", 80);
     gfx_SetTextFGColor(FOREGROUND);
     gfx_SetTextScale(1, 1);
-    centre("built on CEagle Aerie", 120);
+    centre("built on CEagle Aerie with Flight", 120);
     gfx_SetColor(ACCENT);
     gfx_HorizLine(60, 108, GFX_LCD_WIDTH - 120);
     gfx_SwapDraw();
